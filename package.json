@@ -1,0 +1,13 @@
+{
+  "name": "Keyboared WiFi Car",
+  "version": "1",
+  "private": true,
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "^4.13.3",
+    "ws": "^1.1.0",
+    "nodemon":"^1.9.1"
+  }
+}

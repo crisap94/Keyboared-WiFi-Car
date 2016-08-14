@@ -2,7 +2,7 @@
 if ("WebSocket" in window) {
   console.log("WebSocket is supported by your Browser!");
 
-  var Socket = new WebSocket(localhost:3000);
+  var Socket = new WebSocket('ws://localhost:3000');
 
   switch (Socket.readyState) {
     case 0:
@@ -24,7 +24,7 @@ if ("WebSocket" in window) {
 
   Socket.onopen = function() {
     // Web Socket is connected, send data using send()
-    ws.send("Message to send");
+    Socket.send("Message to send");
     console.log("Message is Sent");
   };
 
@@ -33,75 +33,58 @@ if ("WebSocket" in window) {
     console.log("Message received :" + message);
   };
 
+  Socket.onopen;
 } else {
   console.log("WebSocket NOT supported by your Browser!");
 }
 
-$(document).ready(function(){
-  var datos = {
+var datos = {
     "up":false,
     "down":false,
     "right":false,
     "left":false
   };
 
-  //Teclas Presionadas
-  $(document).keypress(function(tecla){
-    if(tecla.which == 37){//Flecha Izquierda
-      datos.left = true;
-      console.log(datos);
+  function enviarDatos(){
+      var stringJson = JSON.stringify(datos);
+      Socket.send(stringJson);
     }
-  });
 
-  $(document).keypress(function(tecla){
-    if(tecla.which == 38){//Flecha Arriba
-      datos.up = true;
-      console.log(datos);
-    }
-  });
-
-  $(document).keypress(function(tecla){
-    if(tecla.which == 39){//Flecha Derecha
-      datos.right = true;
-      console.log(datos);
-    }
-  });
-
-  $(document).keypress(function(tecla){
-    if(tecla.which == 40){//Flecha Abajo
-      datos.down = true;
-      console.log(datos);
-    }
-  });
-
-  //Tlecas Soltadas
-
+$(document).ready(function(){
   $(document).keyup(function(tecla){
-    if(tecla.which == 37){//Flecha Izquierda
-      datos.left = false;
-      console.log(datos);
-    }
-  });
+        if(tecla.which == 37){//Flecha Izquierda
+          datos.left = false;
 
-  $(document).keyup(function(tecla){
-    if(tecla.which == 38){//Flecha Arriba
-      datos.up = false;
-      console.log(datos);
-    }
-  });
+        }
+        if(tecla.which == 38){//Flecha Arriba
+            datos.up = false;
 
-  $(document).keyup(function(tecla){
-    if(tecla.which == 39){//Flecha Derecha
-      datos.right = false;
-      console.log(datos);
-    }
-  });
+          }
+          if(tecla.which == 39){//Flecha Derecha
+            datos.right = false;
 
-  $(document).keyup(function(tecla){
-    if(tecla.which == 40){//Flecha Abajo
-      datos.down = false;
-      console.log(datos);
-    }
-  });
+          }
+          if(tecla.which == 40){//Flecha Abajo
+            datos.down = false;
 
-})
+          }
+      });
+      $(document).keydown(function(tecla){
+        if(tecla.which == 37){//Flecha Izquierda
+          datos.left = true;
+
+        }
+        if(tecla.which == 38){//Flecha Arriba
+            datos.up = true;
+
+          }
+          if(tecla.which == 39){//Flecha Derecha
+            datos.right = true;
+
+          }
+          if(tecla.which == 40){//Flecha Abajo
+            datos.down = true;
+
+          }
+      });
+});

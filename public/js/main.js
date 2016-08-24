@@ -54,37 +54,37 @@ $(document).ready(function(){
   $(document).keyup(function(tecla){
         if(tecla.which == 37){//Flecha Izquierda
           datos.left = false;
-
+		  $(".arrowLeft, :after").css("background","#C7E0E5");
         }
         if(tecla.which == 38){//Flecha Arriba
             datos.up = false;
-
+			      $(".arrowTop, :after").css("background","#C7E0E5");
           }
           if(tecla.which == 39){//Flecha Derecha
             datos.right = false;
-
+			      $(".arrowRight, :after").css("background","#C7E0E5");
           }
           if(tecla.which == 40){//Flecha Abajo
             datos.down = false;
-
+			      $(".arrowBottom, :after").css("background","#C7E0E5");
           }
       });
       $(document).keydown(function(tecla){
         if(tecla.which == 37){//Flecha Izquierda
           datos.left = true;
-
+		      $(".arrowLeft, :after").css("background","#000");
         }
         if(tecla.which == 38){//Flecha Arriba
             datos.up = true;
-
+			      $(".arrowTop, :after").css("background","#000");
           }
           if(tecla.which == 39){//Flecha Derecha
             datos.right = true;
-
+			      $(".arrowRight, :after").css("background","#000");
           }
           if(tecla.which == 40){//Flecha Abajo
             datos.down = true;
-
+			      $(".arrowBottom, :after").css("background","#000");
           }
       });
 });
